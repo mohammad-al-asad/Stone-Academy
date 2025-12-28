@@ -1,5 +1,16 @@
+import { store } from "@/redux/store";
 import { Stack } from "expo-router";
+import { Provider } from "react-redux";
 
 export default function RootLayout() {
-  return <Stack />;
+  return (
+    <Provider store={store}>
+      <Stack
+        initialRouteName="(protected)"
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
+    </Provider>
+  );
 }
