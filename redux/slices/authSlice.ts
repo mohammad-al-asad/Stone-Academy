@@ -1,6 +1,7 @@
 // src/redux/features/auth/authSlice.ts
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { router } from "expo-router";
 
 interface AuthState {
   user: any;
@@ -32,6 +33,7 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
       state.isAuthenticated = false;
+      router.replace("/(auth)/login");
     },
   },
 });

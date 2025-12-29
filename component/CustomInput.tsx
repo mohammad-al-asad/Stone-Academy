@@ -1,35 +1,36 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, View, Pressable } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
+import React, { useState } from "react";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
-import { colors as importColors } from "@/utils/colors";
+import { colors } from "@/utils/colors";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 
-const colors = {
-  main: importColors.main,
-  text: importColors.black,
-  subText: "#ADAEBC",
-  border: "#D1D5DB",
-  background: "#FFFFFF",
-};
-
-interface CustomInputProps {
-  text: string;
+interface CustomInputProps extends React.ComponentProps<typeof TextInput> {
+  text?: string;
   placeholder: string;
   icon?: React.ReactNode;
+  style?: object;
 }
 
-const CustomInput = ({ text, placeholder, icon }: CustomInputProps) => {
+const CustomInput = ({
+  text = "",
+  placeholder,
+  icon,
+  style = {},
+  ...props
+}: CustomInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const isPassword = text.toLowerCase() === "password" || text.toLowerCase() === "confirm password";
+  const isPassword =
+    text.toLowerCase().includes("password") || props.secureTextEntry === true;
 
   return (
     <>
-      <Text style={styles.label}>{text}</Text>
-      <View style={styles.inputWrapper}>
+      {text && <Text style={styles.label}>{text}</Text>}
+      <View style={[styles.inputWrapper, style]}>
         {icon && icon}
         <TextInput
+          {...props}
           placeholder={placeholder}
           placeholderTextColor={colors.subText}
           secureTextEntry={isPassword && !showPassword}
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
   inputWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    height: verticalScale(48),
+    height: moderateScale(50),
     borderWidth: 1,
     borderColor: colors.border,
     borderRadius: moderateScale(10),
@@ -71,13 +72,13 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: moderateScale(14),
-    color: colors.text,
+    color: colors.black,
     paddingVertical: 0,
   },
 
   label: {
     fontSize: moderateScale(13),
     marginBottom: verticalScale(6),
-    color: colors.text,
+    color: colors.black,
   },
 });

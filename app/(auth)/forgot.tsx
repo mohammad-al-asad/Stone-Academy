@@ -1,6 +1,6 @@
 import CustomButton from "@/component/CustomButton";
 import CustomInput from "@/component/CustomInput";
-import { colors as importColors } from "@/utils/colors";
+import { colors, colors as importColors } from "@/utils/colors";
 import Feather from "@expo/vector-icons/Feather";
 import { router } from "expo-router";
 import React from "react";
@@ -15,13 +15,6 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 
-const colors = {
-  main: importColors.main,
-  text: importColors.black,
-  subText: "#ADAEBC",
-  border: "#D1D5DB",
-  background: "#FFFFFF",
-};
 
 export default function ForgotPasswordScreen() {
   return (
@@ -80,7 +73,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(22),
     fontWeight: "700",
     marginBottom: verticalScale(12),
-    color: colors.text,
+    color: colors.black,
     textAlign: "center",
   },
 

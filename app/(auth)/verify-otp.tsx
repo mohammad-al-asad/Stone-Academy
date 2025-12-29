@@ -1,5 +1,5 @@
 import CustomButton from "@/component/CustomButton";
-import { colors as importColors } from "@/utils/colors";
+import { colors, colors as importColors } from "@/utils/colors";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -12,13 +12,6 @@ import {
 import { OtpInput } from "react-native-otp-entry";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 
-const colors = {
-  main: importColors.main,
-  text: importColors.black,
-  subText: "#ADAEBC",
-  border: "#D1D5DB",
-  background: "#FFFFFF",
-};
 const VerifyOtpScreen: React.FC = () => {
   const [otp, setOtp] = useState("");
   const router = useRouter();
@@ -73,7 +66,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(16),
     fontWeight: "bold",
     marginBottom: verticalScale(12),
-    color: colors.text,
+    color: colors.black,
     textAlign: "center",
   },
 

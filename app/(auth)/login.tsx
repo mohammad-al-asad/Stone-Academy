@@ -1,6 +1,6 @@
 import CustomButton from "@/component/CustomButton";
 import CustomInput from "@/component/CustomInput";
-import { colors as importColors } from "@/utils/colors";
+import { colors, colors as importColors } from "@/utils/colors";
 import Feather from "@expo/vector-icons/Feather";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -18,13 +18,6 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 
-const colors = {
-  main: importColors.main,
-  text: importColors.black,
-  subText: "#ADAEBC",
-  border: "#D1D5DB",
-  background: "#FFFFFF",
-};
 
 export default function LoginScreen() {
   return (
@@ -89,7 +82,7 @@ export default function LoginScreen() {
               AsyncStorage.setItem("user", "dummyUser");
               AsyncStorage.setItem("token", "dummyToken");
               AsyncStorage.setItem("isFirstTime", "true");
-              router.replace("/(protected)");
+              router.replace("/(protected)/(tab)/(home)");
             }}
           />
 
@@ -138,7 +131,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(22),
     fontWeight: "700",
     marginBottom: verticalScale(16),
-    color: colors.text, // black
+    color: colors.black, // black
   },
 
   forgot: {
@@ -149,7 +142,7 @@ const styles = StyleSheet.create({
 
   footerText: {
     fontSize: moderateScale(13),
-    color: colors.text, // black
+    color: colors.black, // black
   },
   container: {
     flex: 1,
@@ -170,7 +163,7 @@ const styles = StyleSheet.create({
   tagline: {
     marginTop: verticalScale(8),
     fontSize: moderateScale(13),
-    color: colors.text,
+    color: colors.black,
   },
 
   form: {
@@ -202,7 +195,7 @@ const styles = StyleSheet.create({
   or: {
     marginHorizontal: scale(10),
     fontSize: moderateScale(12),
-    color: colors.text,
+    color: colors.black,
   },
 
   footer: {

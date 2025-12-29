@@ -1,4 +1,4 @@
-import { colors as importColors } from "@/utils/colors";
+import { colors, colors as importColors } from "@/utils/colors";
 import { Image } from "expo-image";
 import React from "react";
 import {
@@ -10,14 +10,6 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
-
-const colors = {
-  main: importColors.main,
-  text: importColors.black,
-  subText: "#ADAEBC",
-  border: "#D1D5DB",
-  background: "#FFFFFF",
-};
 
 export default function ResetSuccess() {
   return (
@@ -60,7 +52,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(30),
     fontWeight: "bold",
     marginBottom: verticalScale(12),
-    color: colors.text,
+    color: colors.black,
     textAlign: "center",
   },
 

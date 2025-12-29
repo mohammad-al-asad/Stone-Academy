@@ -1,6 +1,6 @@
 import CustomButton from "@/component/CustomButton";
 import CustomInput from "@/component/CustomInput";
-import { colors as importColors } from "@/utils/colors";
+import { colors, colors as importColors } from "@/utils/colors";
 import Feather from "@expo/vector-icons/Feather";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useRouter } from "expo-router";
@@ -16,14 +16,6 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
-
-const colors = {
-  main: importColors.main,
-  text: importColors.black,
-  subText: "#ADAEBC",
-  border: "#D1D5DB",
-  background: "#FFFFFF",
-};
 
 export default function RegisterScreen() {
   const router = useRouter();
@@ -142,7 +134,7 @@ const styles = StyleSheet.create({
     width: scale(220),
     marginTop: verticalScale(8),
     fontSize: moderateScale(13),
-    color: colors.text,
+    color: colors.black,
     textAlign: "center",
   },
 
@@ -155,7 +147,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(22),
     fontWeight: "700",
     marginBottom: verticalScale(16),
-    color: colors.text,
+    color: colors.black,
   },
 
   icon: {
@@ -174,7 +166,7 @@ const styles = StyleSheet.create({
 
   footerText: {
     fontSize: moderateScale(13),
-    color: colors.text,
+    color: colors.black,
   },
 
   register: {
