@@ -2,14 +2,30 @@ import { colors } from "@/utils/colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
 import React from "react";
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleProp, StyleSheet, Text } from "react-native";
 import { moderateScale } from "react-native-size-matters";
 
-const ProfileHeader = ({ title, style }: { title: string; style?: any }) => {
+const ProfileHeader = ({
+  title,
+  style,
+  type = "left",
+}: {
+  title: string;
+  style?: StyleProp<any>;
+  type: string;
+}) => {
   return (
-    <Pressable onPress={() => router.back()} style={[styles.container, style]}>
+    <Pressable
+      onPress={() => router.back()}
+      style={[
+        styles.container,
+        style,
+        { justifyContent: type == "center" ? "space-between" : "flex-start" },
+      ]}
+    >
       <Ionicons name="arrow-back" size={30} color={colors.black} />
       <Text style={styles.title}>{title}</Text>
+      {type === "center" && <Text></Text>}
     </Pressable>
   );
 };
@@ -25,6 +41,7 @@ const styles = StyleSheet.create({
     paddingVertical: moderateScale(16),
   },
   title: {
+    alignSelf: "center",
     fontSize: 24,
     fontWeight: "600",
     color: "#000",
