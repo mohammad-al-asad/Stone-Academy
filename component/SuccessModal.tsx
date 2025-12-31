@@ -22,7 +22,7 @@ const SuccessModal = ({
   isVisible,
   onClose,
   title = "You Joined This Events!",
-  message = "Get ready to meet your fitness instructor.",
+  message
 }: SuccessModalProps) => {
   return (
     <Modal

@@ -1,6 +1,6 @@
 import CustomButton from "@/component/CustomButton";
 import CustomInput from "@/component/CustomInput";
-import GenderDropdown from "@/component/GenderDropdown";
+import Dropdown from "@/component/Dropdown";
 import ProfileHeader from "@/component/ProfileHeader";
 import { colors } from "@/utils/colors";
 import { Feather, Ionicons } from "@expo/vector-icons";
@@ -168,9 +168,11 @@ const EditProfileScreen = () => {
               }
             />
 
-            <GenderDropdown
+            <Dropdown
               value={userData.gender}
-              onSelect={(gender) => setUserData({ ...userData, gender })}
+              onSelect={(gender: string) =>
+                setUserData({ ...userData, gender })
+              }
             />
 
             <CustomInput
