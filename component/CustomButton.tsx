@@ -16,6 +16,7 @@ const CustomButton = ({
   text,
   type = "default",
   children,
+  style,
   ...props
 }: ButtonProps) => {
   return (
@@ -31,10 +32,11 @@ const CustomButton = ({
               backgroundColor: "white",
               borderColor: "#E5E7EB",
             },
+        style,
       ]}
     >
-      {text && <Text style={styles.text}>{text}</Text>}
       {children && children}
+      {text && <Text style={styles.text}>{text}</Text>}
     </TouchableOpacity>
   );
 };
@@ -43,6 +45,8 @@ export default CustomButton;
 
 const styles = StyleSheet.create({
   button: {
+    flexDirection: "row",
+    justifyContent: "center",
     borderWidth: 1,
     borderColor: "#e6e6e6",
     paddingVertical: 12,
@@ -50,7 +54,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    color: colors.black,
     fontWeight: "semibold",
     fontSize: 18,
   },

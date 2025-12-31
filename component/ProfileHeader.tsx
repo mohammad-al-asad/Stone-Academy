@@ -12,7 +12,7 @@ const ProfileHeader = ({
 }: {
   title: string;
   style?: StyleProp<any>;
-  type: string;
+  type?: string;
 }) => {
   return (
     <Pressable
