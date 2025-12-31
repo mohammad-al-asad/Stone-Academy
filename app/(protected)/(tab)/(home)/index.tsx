@@ -1,8 +1,11 @@
+import ActivityCard from "@/component/ActivityCard";
+import CustomButton from "@/component/CustomButton";
 import CustomInput from "@/component/CustomInput";
-import { useAppDispatch } from "@/redux/hooks";
+import ShopModal from "@/component/ShopPopup";
 import { colors } from "@/utils/colors";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { router } from "expo-router";
 import React from "react";
 import {
   Image,
@@ -10,46 +13,50 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { moderateScale } from "react-native-size-matters";
+import { moderateScale, verticalScale } from "react-native-size-matters";
 
+export const activities = [
+  {
+    id: "1",
+    title: "Morning Run in Central Park",
+    host: "Alex Johnson",
+    hostAvatar: "https://i.pravatar.cc/150?img=12",
+    date: "Dec 15 • 7:00 AM",
+    distance: "0.8 miles away",
+    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    joinedMembers: [
+      "https://i.pravatar.cc/150?img=21",
+      "https://i.pravatar.cc/150?img=22",
+      "https://i.pravatar.cc/150?img=23",
+      "https://i.pravatar.cc/150?img=24",
+    ],
+    joinedCount: "2/5",
+  },
+  {
+    id: "2",
+    title: "Evening Yoga Session",
+    host: "Sarah Miller",
+    hostAvatar: "https://i.pravatar.cc/150?img=32",
+    date: "Dec 16 • 6:30 PM",
+    distance: "1.2 miles away",
+    image: "https://images.unsplash.com/photo-1552196563-55cd4e45efb3",
+    joinedMembers: [
+      "https://i.pravatar.cc/150?img=31",
+      "https://i.pravatar.cc/150?img=33",
+      "https://i.pravatar.cc/150?img=34",
+    ],
+    joinedCount: "1/4",
+  },
+];
 const Index = () => {
-  const dispatch = useAppDispatch();
-
-  const activities = [
-    {
-      id: 1,
-      title: "Morning Run in Central Park",
-      host: "Alex Johnson",
-      time: "Dec 15 • 7:00 AM",
-      joined: "2/5 joined",
-      distance: "0.8 miles away",
-      image: require("../../../../assets/images/logo1.png"),
-    },
-    {
-      id: 2,
-      title: "Sunset Yoga Session",
-      host: "Sarah Chen",
-      time: "Dec 15 • 7:00 AM",
-      joined: "2/5 joined",
-      distance: "1.2 miles away",
-      image: require("../../../../assets/images/logo1.png"),
-    },
-    {
-      id: 3,
-      title: "HIIT Gym Workout",
-      host: "Mike Rodriguez",
-      time: "Dec 15 • 7:00 AM",
-      joined: "1/6 joined",
-      distance: "2.1 miles away",
-      image: require("../../../../assets/images/logo1.png"),
-    },
-  ];
-
+  const [open, setOpen] = React.useState(true);
   return (
     <SafeAreaView style={styles.safe}>
+      <ShopModal visible={open} onClose={() => setOpen(false)} />
       <ScrollView contentContainerStyle={styles.container}>
         {/* Welcome Row */}
         <View style={styles.welcomeRow}>
@@ -61,7 +68,8 @@ const Index = () => {
             <Text style={styles.welcomeTitle}>Welcome! Sarah</Text>
             <Text style={styles.subText}>@ 38 Chestnut StreetStaunton</Text>
           </View>
-          <View
+          <TouchableOpacity
+            onPress={() => router.push("/(protected)/notiflication")}
             style={{
               position: "relative",
               borderWidth: 1,
@@ -83,7 +91,7 @@ const Index = () => {
               }}
             ></View>
             <Ionicons name="notifications-outline" size={24} color="black" />
-          </View>
+          </TouchableOpacity>
         </View>
 
         {/* Search Row */}
@@ -101,7 +109,7 @@ const Index = () => {
               }
             />
           </View>
-          <Pressable>
+          <Pressable onPress={() => router.push("/activity-pass")}>
             <Image
               source={require("../../../../assets/images/icons/filterIcon.png")}
               style={{
@@ -110,6 +118,35 @@ const Index = () => {
               }}
             />
           </Pressable>
+        </View>
+
+        {/* Action Buttons */}
+        <View style={styles.buttonGroup}>
+          <CustomButton
+            text="Create Actiivity"
+            onPress={() => {
+              router.push({
+                pathname: "/(protected)/create",
+                params: { type: "activity" },
+              });
+            }}
+          />
+          <CustomButton
+            text="Create Event"
+            type="outline"
+            onPress={() => {
+              router.push({
+                pathname: "/(protected)/create",
+                params: { type: "event" },
+              });
+            }}
+          />
+        </View>
+
+        <View style={{ marginTop: verticalScale(20) }}>
+          {activities.map((activity) => (
+            <ActivityCard key={activity.id} item={activity} />
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -136,5 +173,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 12,
+  },
+  buttonGroup: {
+    marginTop: verticalScale(20),
+    gap: verticalScale(12),
+  },
+  mainButton: {
+    justifyContent: "center",
   },
 });

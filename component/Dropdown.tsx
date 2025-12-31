@@ -11,20 +11,22 @@ import {
 } from "react-native";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 
-interface GenderDropdownProps {
+interface DropdownProps {
   value: string | null;
-  onSelect: (gender: string) => void;
+  onSelect: (option: string) => void;
   placeholder?: string;
   options?: string[];
   style?: object;
+  name?: string;
 }
-const GenderDropdown = ({
+const Dropdown = ({
   value,
   onSelect,
+  name="Gender",
   placeholder = "Select gender",
   options = ["Male", "Female", "Other"],
   style = {},
-}: GenderDropdownProps) => {
+}: DropdownProps) => {
   const [expanded, setExpanded] = useState(false);
   const rotationAnim = useRef(new Animated.Value(0)).current;
 
@@ -51,7 +53,7 @@ const GenderDropdown = ({
 
   return (
     <View style={[styles.container, style]}>
-      <Text style={styles.label}>Gender</Text>
+      <Text style={styles.label}>{name}</Text>
 
       <TouchableOpacity
         style={styles.dropdownHeader}
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(13),
     marginBottom: verticalScale(6),
     color: colors.black,
-    fontWeight: "500",
+    fontWeight: "400",
   },
   dropdownHeader: {
     flexDirection: "row",
@@ -169,4 +171,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GenderDropdown;
+export default Dropdown;
